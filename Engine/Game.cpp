@@ -44,7 +44,7 @@ void Game::UpdateModel()
 		const Mouse::Event e = wnd.mouse.Read();
 		if (e.GetType() == Mouse::Event::Type::LPress)
 		{
-			Vei2 screenPos = wnd.mouse.GetPos();
+			Vei2 screenPos = e.GetPos();
 			if (field.getRect().Contains(screenPos)) {
 				field.OnRevealClick(screenPos);
 			}
@@ -52,7 +52,7 @@ void Game::UpdateModel()
 		}
 		else if (e.GetType() == Mouse::Event::Type::RPress)
 		{
-			Vei2 screenPos = wnd.mouse.GetPos();
+			Vei2 screenPos = e.GetPos();
 			if (field.getRect().Contains(screenPos)) {
 				field.OnFlagClick(screenPos);
 			}
