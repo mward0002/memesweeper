@@ -44,7 +44,11 @@ void Game::UpdateModel()
 		const Mouse::Event e = wnd.mouse.Read();
 		if (e.GetType() == Mouse::Event::Type::LPress)
 		{
-			field.OnRevealClick(wnd.mouse.GetPos());
+			Vei2 screenPos = wnd.mouse.GetPos();
+			if (field.getRect().Contains(screenPos)) {
+				field.OnRevealClick(screenPos);
+			}
+			
 		}
 	}
 }
