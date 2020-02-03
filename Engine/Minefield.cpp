@@ -31,17 +31,27 @@ RectI Minefield::getRect() const
 
 void Minefield::OnRevealClick(Vei2 & screenPos)
 {
-	if (getRect().Contains(screenPos)) {
+	
 		Vei2 gridPos = ScreenToGrid(screenPos);
 		Tile& tile = TileAt(gridPos);
-		if (!tile.isRevealed()) {
+		if (!tile.isRevealed() && !tile.isFlagged()) {
 
 			tile.Reveal();
 		}
 
-	}
+	
 	
 
+}
+
+void Minefield::OnFlagClick(Vei2 & screenPos)
+{
+	Vei2 gridPos = ScreenToGrid(screenPos);
+	Tile& tile = TileAt(gridPos);
+	
+
+		tile.ToggleFlag();
+	
 }
 
 const Minefield::Tile& Minefield::TileAt(Vei2 & gridPos) const
@@ -86,6 +96,26 @@ void Minefield::Tile::Reveal()
 bool Minefield::Tile::isRevealed()
 {
 	return state == State::Revealed;
+}
+
+bool Minefield::Tile::isFlagged()
+{
+	return state == State::Flagged;
+}
+void Minefield::Tile::ToggleFlag() {
+
+	
+	if (!isRevealed()) {
+		if (state == State::Hidden) {
+
+			state = State::Flagged;
+		}
+		else {
+
+			state = State::Hidden;
+		}
+	}
+	
 }
 
 void Minefield::Tile::Draw(Graphics & gfx, Vei2 & screenPos)

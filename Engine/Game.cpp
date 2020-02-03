@@ -50,7 +50,20 @@ void Game::UpdateModel()
 			}
 			
 		}
+		else if (e.GetType() == Mouse::Event::Type::RPress)
+		{
+			Vei2 screenPos = wnd.mouse.GetPos();
+			if (field.getRect().Contains(screenPos)) {
+				field.OnFlagClick(screenPos);
+			}
+
+		}
 	}
+
+	
+		
+		
+	
 }
 
 void Game::ComposeFrame()

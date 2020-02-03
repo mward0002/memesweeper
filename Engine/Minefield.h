@@ -19,6 +19,8 @@ private:
 		bool HasMine() const;
 		void Reveal();
 		bool isRevealed();
+		bool isFlagged();
+		void ToggleFlag();
 		void Draw(Graphics& gfx, Vei2& screenPos);
 	private:
 		State state = State::Hidden;
@@ -30,6 +32,7 @@ public:
 	Tile& TileAt( Vei2& gridPos);
 	RectI getRect() const;
 	void OnRevealClick(Vei2& screenPos);
+	void OnFlagClick(Vei2& screenPos);
 	void Draw(Graphics& gfx);
 private:
 	const Tile& TileAt(Vei2& gridPos) const;
